@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <Categories category={category} onSelect={onSelect}/>
-      <NewsList />
+      <NewsList category={category}/>
     </>
   );
 }

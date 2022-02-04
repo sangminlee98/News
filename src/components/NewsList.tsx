@@ -9,16 +9,17 @@ export type Article = {
   url: string,
   urlToImage: string
 }
+type Props = { category: string };
 
-const NewsList = () => {
+const NewsList = ({category}: Props) => {
   const [articles, setArticles] = useState<Article[] | undefined>();
   const [loading,setLoading] = useState(false);
-
   useEffect(() => {
     const fetchData = async() => {
       setLoading(true);
       try {
-        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=kr&apiKey=${process.env.REACT_APP_API_KEY}`);
+        const query = category === 'all' ? '' : `&category=${category}`
+        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=${process.env.REACT_APP_API_KEY}`);
         setArticles(response.data.articles);
       } catch(e) {
         console.log(e);
@@ -26,7 +27,7 @@ const NewsList = () => {
       setLoading(false);
     };
     fetchData();
-  },[]);
+  },[category]);
   if(loading) {
   return <div className='NewsListBlock'>대기 중...</div>
   }

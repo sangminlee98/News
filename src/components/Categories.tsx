@@ -41,7 +41,13 @@ const categories: Category[] = [
 const Categories = ({category, onSelect}: Props) => {
   return (
     <div className='CategoriesBlock'>
-      {categories.map(item => (<div className={`Category ${category === item.name ? 'selected' : null}`} key={item.name} onClick={() => onSelect(item.name)}>{item.text}</div>))}
+      {categories.map(item => 
+        (<div 
+          className={`Category ${category === item.name ? 'selected' : null}`} 
+          key={item.name} 
+          onClick={() => onSelect(item.name)}>
+          {item.text}
+        </div>))}
     </div>
   );
 };
