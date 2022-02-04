@@ -8,20 +8,20 @@
     overflow-x: auto;
   }
 }
-.Category {
-  font-size: 1.125rem;
-  cursor: pointer;
-  white-space: pre;
+a {
   text-decoration: none;
   color: inherit;
-  padding-bottom: 0.25rem;
-
   &:hover {
     color: #495057;
   }
   & + & {
     margin-left: 1rem;
   }
+}
+.Category {
+  font-size: 1.125rem;
+  white-space: pre;
+  padding-bottom: 0.25rem;
 }
 
 .selected {

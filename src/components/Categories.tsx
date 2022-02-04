@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Categories.scss';
 type Category = {
   name: string,
   text: string
-}
-type Props = {
-  category: string,
-  onSelect: (category: string) => void;
 }
 const categories: Category[] = [
   {
@@ -38,16 +35,23 @@ const categories: Category[] = [
     text: '기술'
   },
 ]
-const Categories = ({category, onSelect}: Props) => {
+const Categories = () => {
+  const [select, setSelect] = useState('all');
+  const onSelect = useCallback((category: string) => {
+    setSelect(category)
+  },[])
   return (
     <div className='CategoriesBlock'>
       {categories.map(item => 
-        (<div 
-          className={`Category ${category === item.name ? 'selected' : null}`} 
-          key={item.name} 
-          onClick={() => onSelect(item.name)}>
-          {item.text}
-        </div>))}
+        (<Link to={item.name === 'all' ? '/' : `/${item.name}`}>
+          <div
+            className={`Category ${item.name === select ? 'selected' : null}`} 
+            key={item.name}
+            onClick={() => onSelect(item.name)}>
+              {item.text}
+          </div>
+        </Link>
+        ))}
     </div>
   );
 };

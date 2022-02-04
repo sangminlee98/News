@@ -10,7 +10,7 @@ export type Article = {
   url: string,
   urlToImage: string
 }
-type Props = { category: string };
+type Props = { category: string | undefined};
 
 const NewsList = ({category}: Props) => {
   const [articles, setArticles] = useState<Article[] | undefined>();
@@ -19,7 +19,7 @@ const NewsList = ({category}: Props) => {
     const fetchData = async() => {
       setLoading(true);
       try {
-        const query = category === 'all' ? '' : `&category=${category}`
+        const query = category === undefined ? '' : `&category=${category}`
         const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=${process.env.REACT_APP_API_KEY}`);
         setArticles(response.data.articles);
       } catch(e) {
