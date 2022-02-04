@@ -1,6 +1,14 @@
 import React from 'react';
 import './Categories.scss';
-const categories = [
+type Category = {
+  name: string,
+  text: string
+}
+type Props = {
+  category: string,
+  onSelect: (category: string) => void;
+}
+const categories: Category[] = [
   {
     name: 'all',
     text: '전체보기'
@@ -30,10 +38,10 @@ const categories = [
     text: '기술'
   },
 ]
-const Categories = () => {
+const Categories = ({category, onSelect}: Props) => {
   return (
     <div className='CategoriesBlock'>
-      {categories.map(item => (<div className='Category' key={item.name}>{item.text}</div>))}
+      {categories.map(item => (<div className={`Category ${category === item.name ? 'selected' : null}`} key={item.name} onClick={() => onSelect(item.name)}>{item.text}</div>))}
     </div>
   );
 };
