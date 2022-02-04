@@ -9,3 +9,24 @@
     padding-right: 1rem;
   }
 }
+.loading {
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  top: 15rem;
+  .icon {
+    width: 1em;
+    height: 1em;
+    animation: spinner 1.5s linear infinite;
+  }
+}
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

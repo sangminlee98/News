@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './NewsList.scss';
 import NewsItem from './NewsItem';
 import axios from 'axios';
+import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 
 export type Article = {
   title: string,
@@ -29,7 +30,11 @@ const NewsList = ({category}: Props) => {
     fetchData();
   },[category]);
   if(loading) {
-  return <div className='NewsListBlock'>대기 중...</div>
+  return (
+    <div className='loading'>
+      <div className='icon'><AiOutlineLoading3Quarters /></div>
+    </div>
+  )
   }
   if(!articles) {
     return null;
